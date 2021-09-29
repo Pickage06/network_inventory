@@ -59,11 +59,13 @@ def vendor():
 #Call the vendor's fonction# 
 vendor()
 
+def save_file():
 #Save the dictionnary on a csv file#
-with open('resultat.csv','w') as fichiercsv:
-  writer = csv.writer(fichiercsv)
+  with open('resultat.csv','w') as fichiercsv:
+    writer = csv.writer(fichiercsv)
 #For each items in my dictionnary, save it#
-  for key,value in resultat.items():
-    writer.writerow([key,value])
+    for key,value in resultat.items():
+      writer.writerow([key,value])
 
+save_file()
 print(resultat)
