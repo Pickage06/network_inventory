@@ -40,6 +40,9 @@ def arping():
 #Call arping fonction#
 arping() 
 
+print("resultat ip mac")
+print(resultat)
+
 ###Find API Constructor###
 """With the list ask to the api constructor's informations"""
 def vendor():
@@ -61,11 +64,15 @@ vendor()
 
 def save_file():
 #Save the dictionnary on a csv file#
+  l = []
   with open('resultat.csv','w') as fichiercsv:
-    writer = csv.writer(fichiercsv)
+    writer = csv.writer(fichiercsv, delimiter=';')
     #For each items in my dictionnary, save it#
     for key,value in resultat.items():
-      writer.writerow([key,value])
+      l.append(key)
+      for e in value:
+        l.append(e)
+    writer.writerow(l)
 
 save_file()
 print(resultat)
