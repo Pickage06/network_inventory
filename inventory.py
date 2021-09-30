@@ -17,7 +17,7 @@ the following instructions  """
 #Do a nmap in your subnet#
 def nmap():
   nm = nmap3.Nmap()
-  result = nm.nmap_subnet_scan("192.168.172.0/24")
+  result = nm.nmap_subnet_scan("192.168.0.32/27")
   #Stock IPs in a variable tu use it below#
   global ips
   ips=list(result.keys())[:-2]#"""without the result stats and runtime"""
@@ -64,15 +64,15 @@ vendor()
 
 def save_file():
 #Save the dictionnary on a csv file#
-  l = []
   with open('resultat.csv','w') as fichiercsv:
     writer = csv.writer(fichiercsv, delimiter=';')
     #For each items in my dictionnary, save it#
     for key,value in resultat.items():
+      l = []
       l.append(key)
       for e in value:
         l.append(e)
-    writer.writerow(l)
+      writer.writerow(l)
 
 save_file()
 print(resultat)
