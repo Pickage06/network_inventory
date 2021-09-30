@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# coding: utf-8
 import nmap3
 import os
 import arpreq
@@ -32,9 +32,9 @@ resultat = {}
 def arping(): 
 #For each ip do an arping#
   for ip in ips:
-#Create a variable mac to recover each mac address#
+    #Create a variable mac to recover each mac address#
     mac = arpreq.arpreq(ip)
-#Stock each result of ip and mac in a dictionnary#
+    #Stock each result of ip and mac in a dictionnary#
     resultat[ip] = mac
 
 #Call arping fonction#
@@ -44,16 +44,16 @@ arping()
 """With the list ask to the api constructor's informations"""
 def vendor():
   for ip_dic,mac_liste in resultat.items():
-#Create a variable to insert the correct mac adress on the url#
+    #Create a variable to insert the correct mac adress on the url#
     url_api = "http://www.macvendorlookup.com/api/v2/{"+ mac_liste +"}"
-#Obtain the result of the API Rest#
+    #Obtain the result of the API Rest#
     response_api = requests.get(url_api)
-#Transform the response APi in json format#
+    #Transform the response APi in json format#
     response_json = response_api.json()
-#Extract the list on the json's dictionnary#     
+    #Extract the list on the json's dictionnary#
     dic = response_json[0]
-#Look after the company's equipment in the json's result#
-#Stock informations to complete values in the dictionnary "resultat"#
+    #Look after the company's equipment in the json's result#
+    #Stock informations to complete values in the dictionnary "resultat"#
     resultat[ip_dic] = [mac_liste,dic["company"]] 
     
 #Call the vendor's fonction# 
@@ -63,7 +63,7 @@ def save_file():
 #Save the dictionnary on a csv file#
   with open('resultat.csv','w') as fichiercsv:
     writer = csv.writer(fichiercsv)
-#For each items in my dictionnary, save it#
+    #For each items in my dictionnary, save it#
     for key,value in resultat.items():
       writer.writerow([key,value])
 
