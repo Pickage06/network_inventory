@@ -75,43 +75,35 @@ def mysql():
   with connection:
     with connection.cursor() as cursor:
 
+      # Ask to clean the table "inventaire" #
+      cursor.execute("TRUNCATE TABLE inventory.inventaire")
+
       # On créé la même boucle que l'on avait utilisé pour écrire dans le fichier csv.
+      # Create a loop to add any items of the dictionnary "resultat" into a list "final" #
       for key,value in resultat.items():
-        l = []
-        l.append(key)
-        for e in value:
-          l.append(e)
-        print(l)
+        final = []
+        final.append(key)
+        for each_value in value:
+          final.append(each_value)
 
-        # On construit la partie qui sera utilisé après le "VALUES" dans la requête SQL.
-        donnee = ""
-        for element in l:
-          donnee += "'" + element + "'" + ","
+        # Create a variable will be use for the sql request instead of "VALUES" #
+        data = ""
+        # For each element in my variable, add them #
+        for element in final:
+          data += "'" + element + "'" + ","
 
-        # Construction de la requête SQL
-        print(donnee)
-        donnee_sql = donnee.rstrip(",")
-        print(donnee_sql)
-        add_value = f"INSERT INTO inventaire VALUES({donnee_sql});"
-        print(add_value)
+        # Building of the SQL requests
+        data_sql = data.rstrip(",")
+        # Insert into table "inventaire SQL request"
+        add_value = f"INSERT INTO inventaire VALUES({data_sql});"
 
-        # Execution de la requête SQL
+        # Execute the SQL request #
         cursor.execute(add_value)
         connection.commit()
 
-        #placeholders = ', '.join(['%s'] * len(resultat))
-        #columns = ', '.join("`" + str(x).replace('/', '_') + "`" for x in resultat.keys())
-        #values = ', '.join("'" + str(x).replace('/', '_') + "'" for x in list(resultat.values()))
-        #add_value = """INSERT INTO inventaire ( %s ) VALUES ( %s )""" % (columns, values)
-        #print(add_value)
-        #cursor.execute(add_value, list(resultat.values()))
-        #cursor.execute(add_value)
-        #connection.commit()
-        #print(add_value)
+	# Close the SQL connection #
+        #cursor.close()
+        #connection.close()
 
-#columns = ', '.join("`" + str(x).replace('/', '_') + "`" for x in resulat.keys())
-#values = ', '.join("'" + str(x).replace('/', '_') + "'" for x in mydict.values())
-#sql = "INSERT INTO %s ( %s ) VALUES ( %s );" % ('mytable', columns, values)
-
-
+# Call mysql fonction #
 mysql()
