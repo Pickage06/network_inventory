@@ -73,15 +73,41 @@ connection = pymysql.connect(host='localhost',
 
 def mysql():
   with connection:
-       with connection.cursor() as cursor:
-           #placeholders = ', '.join(['%s'] * len(resultat))
-           columns = ', '.join("`" + str(x).replace('/', '_') + "`" for x in resultat.keys())
-           values = ', '.join("'" + str(x).replace('/', '_') + "'" for x in list(resultat.values()))
-           add_value = """INSERT INTO inventaire ( %s ) VALUES ( %s )""" % (columns, values)
-           #cursor.execute(add_value, list(resultat.values()))
-           cursor.execute(add_value)
-           connection.commit()
-           print(add_value)
+    with connection.cursor() as cursor:
+
+      # On créé la même boucle que l'on avait utilisé pour écrire dans le fichier csv.
+      for key,value in resultat.items():
+        l = []
+        l.append(key)
+        for e in value:
+          l.append(e)
+        print(l)
+
+        # On construit la partie qui sera utilisé après le "VALUES" dans la requête SQL.
+        donnee = ""
+        for element in l:
+          donnee += "'" + element + "'" + ","
+
+        # Construction de la requête SQL
+        print(donnee)
+        donnee_sql = donnee.rstrip(",")
+        print(donnee_sql)
+        add_value = f"INSERT INTO inventaire VALUES({donnee_sql});"
+        print(add_value)
+
+        # Execution de la requête SQL
+        cursor.execute(add_value)
+        connection.commit()
+
+        #placeholders = ', '.join(['%s'] * len(resultat))
+        #columns = ', '.join("`" + str(x).replace('/', '_') + "`" for x in resultat.keys())
+        #values = ', '.join("'" + str(x).replace('/', '_') + "'" for x in list(resultat.values()))
+        #add_value = """INSERT INTO inventaire ( %s ) VALUES ( %s )""" % (columns, values)
+        #print(add_value)
+        #cursor.execute(add_value, list(resultat.values()))
+        #cursor.execute(add_value)
+        #connection.commit()
+        #print(add_value)
 
 #columns = ', '.join("`" + str(x).replace('/', '_') + "`" for x in resulat.keys())
 #values = ', '.join("'" + str(x).replace('/', '_') + "'" for x in mydict.values())
