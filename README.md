@@ -2,7 +2,7 @@
 
 # This project is expected to look after what devices are switch on, to recover their IP address, MAC address too and ask with the api constructor some information. 
 
-#FOR BEGINNING
+## FOR BEGINNING
 
 First, you need to know how use nmap, arping and how ask api constructor
 First, you need to know manipulate lists, dictionnarys and variables' pyhton
