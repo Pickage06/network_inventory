@@ -67,6 +67,8 @@ To realise the execution of this script, you may execute some tasks:
 ## ADAPTATION
 To adpate the script with your own network, please change the subnet on the line 20. 
 
+Change the bloc of sql connection between line 67 at 70 with your own access.
+
 ## STARTING
 To start the script, verify if the subnet had been changed by your own subnet. 
 Verify if the script can be executed (else: chmod +x file.py)
