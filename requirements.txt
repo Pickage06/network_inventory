@@ -1,2 +1,6 @@
-arpreq
+pip install arpreq
+git clone https://github.com/wangoloj/python3-nmap.git
+apt-get install nmap
 python3-nmap
+pip3 install pymysql
+

@@ -14,23 +14,22 @@ of all the equipments on a factory. To do that, please observe
 the following instructions  """
 
 
-### Find IP Address ###
+### 1 ### Find IP Address ###
 # Do a nmap in your subnet #
 def nmap():
   nm = nmap3.Nmap()
   result = nm.nmap_subnet_scan("192.168.172.0/24")
-  # Stock IPs in a variable tu use it below #
+  # Stock IPs in a global variable tu use it below #
   global ips
   ips=list(result.keys())[:-2] # without results "stats" and "runtime" #
   
 # Call nmap fonction #
 nmap()
 
-# Create a dictionnary to stock futur elements #
+### 2 ### Create a dictionnary to stock futur elements ###
 resultat = {}
 
-
-### Find MAC Address ###
+### 3 ### Find MAC Address ###
 def arping(): 
 # For each ip do an arping #
   for ip in ips:
@@ -42,18 +41,17 @@ def arping():
 # Call arping fonction #
 arping() 
 
-
-### Find API Constructor ###
+### 4 ### Find API Constructor ###
 """With resultat{ip,mac} ask to the api constructor's informations"""
 def vendor():
   for ip_dic,mac_liste in resultat.items():
-    # Create a variable to insert the correct mac adress on the url#
+    # Create a variable to insert the correct mac adress in the url#
     url_api = "http://www.macvendorlookup.com/api/v2/{"+ mac_liste +"}"
     # Obtain the result of the API Rest #
     response_api = requests.get(url_api)
-    # Transform the response APi in json format #
+    # Transform the response API in json format #
     response_json = response_api.json()
-    # Extract the list on the json's dictionnary #
+    # Extract the list in the json's dictionnary #
     dic = response_json[0]
     # Look after the company's equipment in the json's result #
     # Stock informations to complete values in the dictionnary "resultat" #
@@ -62,19 +60,17 @@ def vendor():
 # Call the vendor's fonction # 
 vendor()
 
-### Transfer the dictionnary "resultat" on a database ###
+### 5 ### Transfer the dictionnary "resultat" on a database ###
 # Open database connection #
 connection = pymysql.connect(host='localhost',
                               user='antho',
-                              password='hello',
+                              password='',
                               database='inventory',
                               cursorclass=pymysql.cursors.DictCursor)
-
 
 def mysql():
   with connection:
     with connection.cursor() as cursor:
-
       # Ask to clean the table "inventaire" #
       cursor.execute("TRUNCATE TABLE inventory.inventaire")
 
