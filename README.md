@@ -93,5 +93,5 @@ Anthony LANIESSE : anlaniessepro@gmail.com
 Guillaume DUALE
 
 ## LICENCE
-This project is available under GNU General Public License v3.0 - see the file [LICENSE.md](LICENSE.md) for more informations.
+This project is available under GNU General Public License v3.0 - see the file [LICENSE](LICENSE) for more informations.
 
