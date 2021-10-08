@@ -1,9 +1,9 @@
 # Network Inventory
+This software is used to make an inventory of active network equipments.
 
-ce logiciel est utilisé pour inventorié les equipements réseaux actifs
-Il stock cet inventaire dans une base de donnée sql
+It stock this inventory on a SQL database.
 
-In more details,this project is expected to look after what devices are switch on, to recover their IP address, MAC address too and ask with the api constructor some information.
+In more details, this project is expected to look after what devices are switch on, to recover their IP address, MAC address too and ask with the api constructor some information.
 
 Explanations:
 
@@ -43,13 +43,14 @@ Mysql is a Database Management System(DBMS)  which stock informations.
 
 - Mysql credential
 
-Change the bloc of sql connection between line 67 at 70 with your own informations.
+Change the bloc of SQL connection between line 67 at 70 with your own informations.
 
 - Verify if the script can be executed (else: chmod +x inventory.py)
 
 ## HOW TO USE IT
+> ./inventory.py your_subnet
 
-> ./inventory.py 192.168.172.0/24
+_exemple :_ > ./inventory.py 192.168.172.0/24
 
 ## HOW MY SOFTWARE WORKS
 To realise the execution of this script, you may execute some tasks:
@@ -84,6 +85,7 @@ Version 1.0
 
 ## AUTORS
 Anthony LANIESSE : anlaniessepro@gmail.com
+
 [Guillaume DUALE](https://github.com/tazou)
 
 ## LICENCE
