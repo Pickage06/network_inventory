@@ -7,6 +7,11 @@ $username = "antho";
 $password = "hello";
 $dbname = "inventory";
 
+echo "This page was generated at " . date("D/M/Y - h:i:sa");
+echo "<br />";
+echo "<br />";
+
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
