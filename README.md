@@ -37,13 +37,13 @@ Mysql is a Database Management System(DBMS)  which stock informations.
 
 > mysql> create database database_name;
 
-- Install Python dependencies
-
-> pip3 install -r requierements.txt
-
 - Mysql credential
 
 Change the bloc of SQL connection between line 67 at 70 with your own informations.
+
+- Install Python dependencies
+
+> pip3 install -r requierements.txt
 
 - Verify if the script can be executed (else: chmod +x inventory.py)
 
@@ -55,7 +55,7 @@ _exemple :_ > ./inventory.py 192.168.172.0/24
 ## HOW MY SOFTWARE WORKS
 To realise the execution of this script, you may execute some tasks:
 
-1- Search about the IP address by using nmap modul "def nmap():".
+1- Search about the IP address by using nmap module "def nmap():".
 
 1.2- Extract IPs addresses on the result, it is a dictionnary (IPs are keys of the dictionnary)
 
