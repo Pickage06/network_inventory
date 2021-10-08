@@ -5,6 +5,16 @@ Il stock cet inventaire dans une base de donnée sql
 
 In more details,this project is expected to look after what devices are switch on, to recover their IP address, MAC address too and ask with the api constructor some information.
 
+Explanations:
+
+Nmap is a module used to search on the network some informations about devices switch on. Informations like IP address. 
+
+Arping is a module used to check about the Mac address by supplying IP address.
+
+API constructor is an Application Programming Interface, created by the constructor to permit access everyone at some informations. Like the company of the device, date, version of the equipment etc.  
+
+Mysql is a Database Management System(DBMS)  which stock informations.
+
 ## PREREQUISITE
 
 - Install mysql.
