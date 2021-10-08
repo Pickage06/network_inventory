@@ -14,20 +14,18 @@ import sys
 of all the equipments on a factory. To do that, please observe 
 the following instructions  """
 
-
 ### 1 ### Find IP Address ###
 # Do a nmap in your subnet #
 def nmap():
   nm = nmap3.Nmap()
-#  result = nm.nmap_subnet_scan("192.168.172.0/24")
-  result = nm.nmap_subnet_scan(sys.argv)
+  result = nm.nmap_subnet_scan(sys.argv[1])
   # Stock IPs in a global variable tu use it below #
   global ips
   ips=list(result.keys())[:-2] # without results "stats" and "runtime" #
   
 # Call nmap fonction #
 nmap()
-print(ips)
+
 ### 2 ### Create a dictionnary to stock futur elements ###
 resultat = {}
 
@@ -76,7 +74,6 @@ def mysql():
       # Ask to clean the table "inventaire" #
       cursor.execute("TRUNCATE TABLE inventory.inventaire")
 
-      # On créé la même boucle que l'on avait utilisé pour écrire dans le fichier csv.
       # Create a loop to add any items of the dictionnary "resultat" into a list "final" #
       for key,value in resultat.items():
         final = []
@@ -97,11 +94,11 @@ def mysql():
 
         # Execute the SQL request #
         cursor.execute(add_value)
-        connection.commit()
-
-	# Close the SQL connection #
-        #cursor.close()
-        #connection.close()
+        connection.commit()	
 
 # Call mysql fonction #
 mysql()
+
+# Close the SQL connection #
+cursor.close()
+connection.close()
